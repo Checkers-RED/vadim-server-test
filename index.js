@@ -1,5 +1,5 @@
 const express = require('express');
-//лолкек
+
 //Характеристики шашки:
 //Цвет
 //Координата 1
@@ -26,7 +26,8 @@ app.post('/', function (req, res) {
     coordinate_y = req.body.coordinate_y
     new_coordinate_x = req.body.new_coordinate_x
     new_coordinate_y = req.body.new_coordinate_y
-    console.log(color, coordinate_x, coordinate_y, new_coordinate_x, new_coordinate_y)
+    console.log('Coordinates of', color, 'will be changed:\nfrom:', 
+    coordinate_x, coordinate_y, '\nto:', new_coordinate_x, new_coordinate_y)
   }
   catch (err) {
     console.log(err)
@@ -40,12 +41,12 @@ active_color = []
 //Валидация цвета
   if (color == "white") {
     active_color = checkers.white
-    console.log(checkers.white)
+    console.log('Before:', checkers.white)
   }
   else 
   if (color == "black") {
     active_color = checkers.black 
-    console.log(checkers.black)
+    console.log('Before:', checkers.black)
   }
   else {
     res.status(400).json({ status: "error: no such color" })
@@ -53,20 +54,30 @@ active_color = []
   }
 
 //Ищем шашку и меняем параметры
-  for (var index = 0; index < active_color.length; index++) {
-    
-    if (active_color[index].coordinate_x == coordinate_x)
-      if (active_color[index].coordinate_y == coordinate_y) 
+  for (var i = 0; i < active_color.length; i++) {
+    if (active_color[i].coordinate_x == coordinate_x)
+      if (active_color[i].coordinate_y == coordinate_y) 
       {
-        //Сюда нужно вставить вызов функции валидации, но делать её я не буду
-        active_color[index].coordinate_x = new_coordinate_x
-        active_color[index].coordinate_y = new_coordinate_y
-        console.log(active_color)
-
-        //Вернуть статус-код выполнения задачи
-        res.status(200).send({ status: "ok" });
-
-        return
+        //Функция валидации хода
+        busy = false
+        for (var j = 0; j < active_color.length; j++)
+          if (active_color[j].coordinate_x == new_coordinate_x)
+            if (active_color[j].coordinate_y == new_coordinate_y)
+              busy = true
+        if (busy == false) {
+          active_color[i].coordinate_x = new_coordinate_x
+          active_color[i].coordinate_y = new_coordinate_y
+          console.log('After:', active_color)
+          //Вернуть статус-код выполнения задачи
+          res.status(200).send({ status: "ok" });
+          return
+        }
+        else {
+          console.log('After: No changes')
+          //Вернуть статус-код ошибки выбора новых координат
+          res.status(400).send({ status: "error: this coordinates are already occupied" });
+          return
+        }
       }
   }
 
