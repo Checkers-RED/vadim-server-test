@@ -59,12 +59,16 @@ active_color = []
       if (active_color[i].coordinate_y == coordinate_y) 
       {
         //Функция валидации хода
-        busy = false
+        busy = 0
         for (var j = 0; j < active_color.length; j++)
           if (active_color[j].coordinate_x == new_coordinate_x)
-            if (active_color[j].coordinate_y == new_coordinate_y)
-              busy = true
-        if (busy == false) {
+            if (active_color[j].coordinate_y == new_coordinate_y) {
+              if (i == j)
+                busy = 1
+              else
+                busy = 2
+            }
+        if (busy == 0) {
           active_color[i].coordinate_x = new_coordinate_x
           active_color[i].coordinate_y = new_coordinate_y
           console.log('After:', active_color)
@@ -72,7 +76,13 @@ active_color = []
           res.status(200).send({ status: "ok" });
           return
         }
-        else {
+        else if (busy == 1) {
+          console.log('After: No changes')
+          //Вернуть статус-код о выборе тех же самых координат
+          res.status(300).send({ status: "checker got unselected" });
+          return
+        }
+        else if (busy == 2) {
           console.log('After: No changes')
           //Вернуть статус-код ошибки выбора новых координат
           res.status(400).send({ status: "error: this coordinates are already occupied" });
