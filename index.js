@@ -18,8 +18,20 @@ app.get('/', (req, res) => {
   res.status(200).json(checkers)
 })
 
+function check_input(req) {
+  if (req.body.color == undefined)
+    return false
+  
+  return true
+}
+
 app.post('/', function (req, res) {
 //Принять цвет шашки, координаты шашки, координаты места перемещения шашки
+  if (!check_input(req)) {
+    res.status(400).json({status : "error: unable to parse given data"})
+    return
+  }
+
   try {
     color = req.body.color
     coordinate_x = req.body.coordinate_x
