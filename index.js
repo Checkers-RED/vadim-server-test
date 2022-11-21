@@ -53,6 +53,8 @@ active_color = []
     return
   }
 
+  //TODO: ЕСТЬ ОШИБКА: чёрная шашка может наехать на белую
+
 //Ищем шашку и меняем параметры
   for (var i = 0; i < active_color.length; i++) {
     if (active_color[i].coordinate_x == coordinate_x)
