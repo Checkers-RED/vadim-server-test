@@ -38,21 +38,23 @@ app.post('/', function (req, res) {
 //Провести валидацию, возможно ли двинуть шашку на это место
 
 active_color = []
+inactive_color = []
 //Валидация цвета
   if (color == "white") {
     active_color = checkers.white
+    inactive_color = checkers.black
     console.log('Before:', checkers.white)
   }
   else 
   if (color == "black") {
     active_color = checkers.black 
+    inactive_color = checkers.white
     console.log('Before:', checkers.black)
   }
   else {
     res.status(400).json({ status: "error: no such color" })
     return
   }
-
   //TODO: ЕСТЬ ОШИБКА: чёрная шашка может наехать на белую
 
 //Ищем шашку и меняем параметры
@@ -70,6 +72,10 @@ active_color = []
               else
                 busy = 2
             }
+        for (var j = 0; j < inactive_color.length; j++)
+          if (inactive_color[j].coordinate_x == new_coordinate_x)
+            if (inactive_color[j].coordinate_y == new_coordinate_y)
+              busy = 2
         if (busy == 0) {
           active_color[i].coordinate_x = new_coordinate_x
           active_color[i].coordinate_y = new_coordinate_y
