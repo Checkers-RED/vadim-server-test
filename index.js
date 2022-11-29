@@ -1,120 +1,42 @@
+//подключенные библеотеки
 const express = require('express');
-
-//Характеристики шашки:
-//Цвет
-//Координата 1
-//Координата 2
-var checkers = require('./checkers.json')
-
+const XMLHttpRequest = require('xhr2');
+var checkers = require('./checkers.json') //обращение к файлу
 const hostname = '127.0.0.1';
 const port = 3000;
 
 const app = express();
 app.use(express.json());
 
+//гет запрос к которому обратится клиент для получения checkers.json
 app.get('/', (req, res) => {
   //Вернуть все данные о шашках с их цветами и их координатами на поле
-
   res.status(200).json(checkers)
 })
+//пост запрос для вывод получения статускода от клиента
+app.post('/', (req, res) => {
+ 
+  const json = JSON.stringify({ status: "no answer" }); //изначальное значение если ответ еще не пришел
+  const request = new XMLHttpRequest();
+  //обращение к клиенту для получение статус кода
+  request.open("GET", 'http://localhost:4000/statuscode'); 
+  request.setRequestHeader('Content-Type', 'application/json');
+  request.send(json);
 
-function check_input(req) {
-  if (req.body.color == undefined)
-    return false
-  
-  return true
-}
-
-app.post('/', function (req, res) {
-//Принять цвет шашки, координаты шашки, координаты места перемещения шашки
-  if (!check_input(req)) {
-    res.status(400).json({status : "error: unable to parse given data"})
-    return
+  request.onload = (e) => { //вывод статус кода
+    if (request.response) {
+      //статус код пришел
+      console.log(request.response);
+      res.status(200).json(JSON.parse(request.response));
+    }
+    else {
+      //статус код не пришел
+      console.log(json);
+      res.status(400).json(JSON.parse(json));
+    }
   }
+})
 
-  try {
-    color = req.body.color
-    coordinate_x = req.body.coordinate_x
-    coordinate_y = req.body.coordinate_y
-    new_coordinate_x = req.body.new_coordinate_x
-    new_coordinate_y = req.body.new_coordinate_y
-    console.log('Coordinates of', color, 'will be changed:\nfrom:', 
-    coordinate_x, coordinate_y, '\nto:', new_coordinate_x, new_coordinate_y)
-  }
-  catch (err) {
-    console.log(err)
-    res.status(400).json({ status: "error: unable to parse given data" })
-    return
-  }
-
-//Провести валидацию, возможно ли двинуть шашку на это место
-
-active_color = []
-inactive_color = []
-//Валидация цвета
-  if (color == "white") {
-    active_color = checkers.white
-    inactive_color = checkers.black
-    console.log('Before:', checkers.white)
-  }
-  else 
-  if (color == "black") {
-    active_color = checkers.black 
-    inactive_color = checkers.white
-    console.log('Before:', checkers.black)
-  }
-  else {
-    res.status(400).json({ status: "error: no such color" })
-    return
-  }
-  //TODO: ЕСТЬ ОШИБКА: чёрная шашка может наехать на белую
-
-//Ищем шашку и меняем параметры
-  for (var i = 0; i < active_color.length; i++) {
-    if (active_color[i].coordinate_x == coordinate_x)
-      if (active_color[i].coordinate_y == coordinate_y) 
-      {
-        //Функция валидации хода
-        busy = 0
-        for (var j = 0; j < active_color.length; j++)
-          if (active_color[j].coordinate_x == new_coordinate_x)
-            if (active_color[j].coordinate_y == new_coordinate_y) {
-              if (i == j)
-                busy = 1
-              else
-                busy = 2
-            }
-        for (var j = 0; j < inactive_color.length; j++)
-          if (inactive_color[j].coordinate_x == new_coordinate_x)
-            if (inactive_color[j].coordinate_y == new_coordinate_y)
-              busy = 2
-        if (busy == 0) {
-          active_color[i].coordinate_x = new_coordinate_x
-          active_color[i].coordinate_y = new_coordinate_y
-          console.log('After:', active_color)
-          //Вернуть статус-код выполнения задачи
-          res.status(200).send({ status: "ok" });
-          return
-        }
-        else if (busy == 1) {
-          console.log('After: No changes')
-          //Вернуть статус-код о выборе тех же самых координат
-          res.status(300).send({ status: "checker got unselected" });
-          return
-        }
-        else if (busy == 2) {
-          console.log('After: No changes')
-          //Вернуть статус-код ошибки выбора новых координат
-          res.status(400).send({ status: "error: this coordinates are already occupied" });
-          return
-        }
-      }
-  }
-
-//Вернуть статус-код ошибки выполнения задачи
-  res.status(400).send({ status: "error: no such checker" });
-});
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
+app.listen(port, () => { //сервер запущен
+  console.log(`Server active on port ${port}`)
 })
