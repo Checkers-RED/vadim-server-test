@@ -1,7 +1,8 @@
 //подключенные библеотеки
 const express = require('express');
 const XMLHttpRequest = require('xhr2');
-var checkers = require('./checkers.json') //обращение к файлу
+var checkers = require('./checkers.json') //список всех шашек
+var chCh = require('./checker_choose.json') //выбранная шашка
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -10,9 +11,17 @@ app.use(express.json());
 
 //гет запрос к которому обратится клиент для получения checkers.json
 app.get('/', (req, res) => {
-  //Вернуть все данные о шашках с их цветами и их координатами на поле
+  //Вернуть все данные о всех шашках на игровой доске
   res.status(200).json(checkers)
 })
+
+//гет запрос к которому обратится клиент для получения checker_choose.json
+//должен находится в графическом блоке, которого у меня пока нет)
+app.get('/choose', (req, res) => {
+  //Вернуть все данные о выбранной шашке
+  res.status(200).json(chCh)
+})
+
 //пост запрос для вывод получения статускода от клиента
 app.post('/', (req, res) => {
  
