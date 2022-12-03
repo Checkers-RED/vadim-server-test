@@ -141,14 +141,14 @@
             "canBeat": false,
             "isBeaten": false
         },        {
-            "horiz": 5,
-            "vertic": 6,
+            "horiz": 6,
+            "vertic": 8,
             "isQueen": false,
             "canBeat": false,
             "isBeaten": false
         },        {
-            "horiz": 6,
-            "vertic": 6,
+            "horiz": 8,
+            "vertic": 8,
             "isQueen": false,
             "canBeat": false,
             "isBeaten": false
