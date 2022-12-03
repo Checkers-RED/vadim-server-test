@@ -1,7 +1,7 @@
 {
     "color": "white",
-    "horiz": 3,
-    "vertic": 1,
+    "horiz": 1,
+    "vertic": 3,
     "isQueen": false,
     "canBeat": false
 }
