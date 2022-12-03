@@ -2,29 +2,75 @@
     "white":
     [
         {
-            "coordinate_x": 1,
-            "coordinate_y": 2,
+            "horiz": 1,
+            "vertic": 1,
             "isQueen": false,
             "canBeat": false,
             "isBeaten": false
         },
         {
-            "coordinate_x": 2,
-            "coordinate_y": 1,
-            "isQueen": true,
-            "canBeat": false,
-            "isBeaten": false
-        },
-        {
-            "coordinate_x": 3,
-            "coordinate_y": 3,
+            "horiz": 3,
+            "vertic": 1,
             "isQueen": false,
             "canBeat": false,
             "isBeaten": false
-        },
-        {
-            "coordinate_x": 2,
-            "coordinate_y": 2,
+        },        {
+            "horiz": 5,
+            "vertic": 1,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 7,
+            "vertic": 1,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 2,
+            "vertic": 2,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 4,
+            "vertic": 2,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 6,
+            "vertic": 2,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 8,
+            "vertic": 2,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 1,
+            "vertic": 3,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 3,
+            "vertic": 3,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 5,
+            "vertic": 3,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 7,
+            "vertic": 3,
             "isQueen": false,
             "canBeat": false,
             "isBeaten": false
@@ -34,8 +80,75 @@
     "black":
     [
         {
-            "coordinate_x": 1,
-            "coordinate_y": 1,
+            "horiz": 2,
+            "vertic": 6,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },
+        {
+            "horiz": 4,
+            "vertic": 6,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 6,
+            "vertic": 6,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 8,
+            "vertic": 6,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 1,
+            "vertic": 7,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 3,
+            "vertic": 7,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 5,
+            "vertic": 7,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 7,
+            "vertic": 7,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 2,
+            "vertic": 8,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 4,
+            "vertic": 8,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 5,
+            "vertic": 6,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 6,
+            "vertic": 6,
             "isQueen": false,
             "canBeat": false,
             "isBeaten": false
