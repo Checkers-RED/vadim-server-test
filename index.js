@@ -3,6 +3,7 @@ const express = require('express');
 const XMLHttpRequest = require('xhr2');
 var checkers = require('./checkers.json') //список всех шашек
 var chCh = require('./checker_choose.json') //выбранная шашка
+var new_coords = require('./new_coords.json') //новые координаты шашки
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -20,6 +21,13 @@ app.get('/', (req, res) => {
 app.get('/choose', (req, res) => {
   //Вернуть все данные о выбранной шашке
   res.status(200).json(chCh)
+})
+
+//гет запрос к которому обратится клиент для получения new_coords.json
+//должен находится в графическом блоке, которого у меня пока нет)
+app.get('/move_coord', (req, res) => {
+  //Вернуть координаты
+  res.status(200).json(new_coords)
 })
 
 //пост запрос для вывод получения статускода от клиента
