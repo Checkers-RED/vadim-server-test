@@ -1,0 +1,55 @@
+{
+    "white":
+    [
+        {
+            "horiz": 4,
+            "vertic": 4,
+            "isQueen": true,
+            "canBeat": false,
+            "isBeaten": false
+        },
+        {
+            "horiz": 1,
+            "vertic": 1,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 1,
+            "vertic": 7,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        }
+    ],
+
+    "black":
+    [
+        {
+            "horiz": 5,
+            "vertic": 5,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },
+        {
+            "horiz": 3,
+            "vertic": 5,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 6,
+            "vertic": 2,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        },        {
+            "horiz": 2,
+            "vertic": 2,
+            "isQueen": false,
+            "canBeat": false,
+            "isBeaten": false
+        }
+    ]
+}
